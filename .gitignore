@@ -1,0 +1,81 @@
+# Node dependencies
+node_modules/
+
+# Yarn v2/v3 cache
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build output
+build/
+dist/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Parcel cache
+.parcel-cache/
+
+# Next.js build (if accidentally used)
+.next/
+
+# Vite cache
+node_modules/.vite/
+
+# dotenv environment variables
+.env
+.env.*.local
+.env.local
+
+# Editor directories and files
+.vscode/
+*.code-workspace
+.idea/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+*.tmp
+*.swp
+*.lock
+
+# Storybook build
+storybook-static/
+
+# Storybook cache
+.cache/storybook/
+
+# Coverage reports
+.coverage/
+
+# Misc caches
+.cache/
+.cache-loader/
+
+# Optional: ignore local lockfile cache for pnpm (uncomment if desired)
+#.pnpm-store/
+
+# End of .gitignore
