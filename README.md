@@ -132,3 +132,64 @@ ExamenFrontend/
    - Posts (lectura y creación simulada)
    - Comentarios (lectura y creación simulada)
 
+
+## 📦 Empaquetar la aplicación en un WAR para Tomcat
+
+### 1) Generar la build de producción
+
+```
+npm install
+npm run build
+```
+
+### 2) Preparar `WEB-INF/web.xml` para el despliegue (SPA)
+
+Tomcat sirve archivos estáticos desde la raíz del WAR. Para que las rutas cliente (SPA) funcionen correctamente, añade un `web.xml` que use `index.html` como `welcome-file` y que redirija 404 a `index.html` (solución simple para client-side routing):
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                                           http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+             version="3.1">
+   <welcome-file-list>
+      <welcome-file>index.html</welcome-file>
+   </welcome-file-list>
+
+   <error-page>
+      <error-code>404</error-code>
+      <location>/index.html</location>
+   </error-page>
+</web-app>
+```
+
+### 3) Empaquetar `dist/` en un WAR
+
+Con JDK instalado (herramienta `jar`):
+
+```
+cd dist
+jar cvf ../mi-app.war *
+cd ..
+
+```
+
+### 4) Base path / assets
+
+Si vas a desplegar bajo un contexto distinto a la raíz, compila la app con la opción `base` para que los assets apunten a la ruta correcta.
+
+- Opción en `vite.config.js`:
+
+```js
+export default defineConfig({
+   base: '/mi-app/',
+   plugins: [react()],
+});
+```
+
+- O pasar la base al build:
+
+```bash
+npm run build -- --base=/mi-app/
+```
